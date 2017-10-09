@@ -8,7 +8,16 @@ pipeline {
     }
     stage('Test') {
       steps {
-        bat 'echo Test'
+        parallel(
+          "Test": {
+            bat 'echo Test'
+            
+          },
+          "More Test": {
+            bat 'echo MoreTest'
+            
+          }
+        )
       }
     }
     stage('Deploy') {
